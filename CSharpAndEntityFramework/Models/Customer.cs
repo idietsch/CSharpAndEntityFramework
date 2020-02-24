@@ -14,6 +14,9 @@ namespace CSharpAndEFLibrary.Models {
         public double Sales { get; set; }
         public bool Active { get; set; }
 
+        public override string ToString() => $"{Id}|{Name}|{Sales}|{Active}";
+        
+
         public Customer() {  }
 
 

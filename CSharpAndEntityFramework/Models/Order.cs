@@ -15,6 +15,8 @@ namespace CSharpAndEFLibrary.Models {
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
+        public override string ToString() => $"{Id}|{Description}|{Amount}|{CustomerId}|{Customer}";
+
         public Order() {  }
 
 
