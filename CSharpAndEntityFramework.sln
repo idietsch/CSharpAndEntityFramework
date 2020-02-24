@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpAndEFLibrary", "CSharpAndEntityFramework\CSharpAndEFLibrary.csproj", "{544D6A44-CEE5-4F5F-8B26-022B352614E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpAndEF", "CSharpAndEF\CSharpAndEF.csproj", "{3483BF20-5EC6-4204-942D-56B9DBC9518C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{544D6A44-CEE5-4F5F-8B26-022B352614E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544D6A44-CEE5-4F5F-8B26-022B352614E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544D6A44-CEE5-4F5F-8B26-022B352614E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544D6A44-CEE5-4F5F-8B26-022B352614E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3483BF20-5EC6-4204-942D-56B9DBC9518C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3483BF20-5EC6-4204-942D-56B9DBC9518C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3483BF20-5EC6-4204-942D-56B9DBC9518C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3483BF20-5EC6-4204-942D-56B9DBC9518C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {038707C6-C160-48D2-92EE-D66DC316C1AE}
+	EndGlobalSection
+EndGlobal
