@@ -66,6 +66,31 @@ namespace CSharpAndEFLibrary.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("CSharpAndEFLibrary.Models.Orderline", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Orderlines");
+                });
+
             modelBuilder.Entity("CSharpAndEFLibrary.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -96,10 +121,25 @@ namespace CSharpAndEFLibrary.Migrations
 
             modelBuilder.Entity("CSharpAndEFLibrary.Models.Order", b =>
                 {
-                    b.HasOne("CSharpAndEFLibrary.Models.Customer", "Customer")
+                    b.HasOne("CSharpAndEFLibrary.Models.Customer", "Customerx")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CSharpAndEFLibrary.Models.Orderline", b =>
+                {
+                    b.HasOne("CSharpAndEFLibrary.Models.Order", "Orderx")
+                        .WithMany("Orderlines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CSharpAndEFLibrary.Models.Product", "Productx")
+                        .WithMany("Orderlines")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
