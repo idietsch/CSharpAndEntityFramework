@@ -8,6 +8,7 @@ namespace CSharpAndEntityFramework {
 
         public virtual DbSet<Customer> Customers { get; set; } //point to Models folder
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
 
         public AppDbContext() { }
 
@@ -20,6 +21,14 @@ namespace CSharpAndEntityFramework {
                 builder.UseSqlServer(connStr);
             }
         }
-
+        protected override void OnModelCreating(ModelBuilder model) {
+            model.Entity<Product>(e => {
+                e.HasKey(x => x.Id);
+                e.Property(x => x.Code).HasMaxLength(10).IsRequired();
+                e.Property(x => x.Name).HasMaxLength(30).IsRequired();
+                e.Property(x => x.Price);
+                e.HasIndex(x => x.Code).IsUnique();
+            });
+        }
     }
 }

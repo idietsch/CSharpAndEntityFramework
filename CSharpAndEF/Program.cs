@@ -12,8 +12,22 @@ namespace CSharpAndEF {
             //UpdateCustomer(context);
             //DeleteCustomer(context);
             GetAllCustomers(context);
-            AddOrder(context);
+            //AddOrder(context);
             GetAllOrders(context);
+            //UpdateCustomerSales(context);
+            //AddProduct(context);
+            GetAllProducts(context);
+        }
+        static void UpdateCustomerSales(AppDbContext context) {
+            var custOrderJoin = from c in context.Customers
+                                join o in context.Orders
+                                on c.Id equals o.CustomerId
+                                where c.Id == 3
+                                select new { Amount = o.Amount, Customer = c.Name, Order = o.Description};
+            var ordertotal = custOrderJoin.Sum(c => c.Amount);
+            var cust = context.Customers.Find(5);
+            cust.Sales = ordertotal;
+            context.SaveChanges();
         }
         static void UpdateCustomer(AppDbContext context) {
             var custpk = 2;
@@ -54,7 +68,10 @@ namespace CSharpAndEF {
             };
             context.Orders.Add(ord);
             var rowsAffected = context.SaveChanges();
+            if (rowsAffected == 0) throw new Exception("Order Add Failed");
+            else { 
             Console.WriteLine("Add Successful");
+            }
         }
         //Alternatively
         //static void AddOrder(AppDbContext context) {
@@ -77,7 +94,7 @@ namespace CSharpAndEF {
             };
             context.Customers.Add(cust);
             var rowsAffected = context.SaveChanges();
-            if (rowsAffected == 0) throw new Exception("Add Failed");
+            if (rowsAffected == 0) throw new Exception("Customer Add Failed");
             return;
 
         }
@@ -91,7 +108,24 @@ namespace CSharpAndEF {
             if (rowsAffected != 1) throw new Exception("Delete failed");
         }
 
+        static void AddProduct(AppDbContext context) {
+            var product1 = new Product { Id = 0, Price = 150, Name = "Shoe", Code = "Le Code" };
+            var product2 = new Product { Id = 0, Price = 12, Name = "Egg", Code = "Egg" };
+            var product3 = new Product { Id = 0, Price = 12345, Name = "Thing", Code = "Thng" };
+            var product4 = new Product { Id = 0, Price = 100, Name = "A Hundred Dollar Bill", Code = "Money" };
+            var product5 = new Product { Id = 0, Price = 0, Name = "Free Shit", Code = "Free" };
+            context.AddRange(product1, product2, product3, product4, product5);
+            var rowsAffected = context.SaveChanges();
+            if (rowsAffected == 0) throw new Exception("fail");
+            return;
+        }
 
+        static void GetAllProducts(AppDbContext context) {
+            var prods = context.Products.ToList();
+            foreach(var p in prods) {
+                Console.WriteLine(p);
+            }
+        }
 
 
     }
